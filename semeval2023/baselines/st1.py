@@ -17,7 +17,7 @@ def make_dataframe(input_folder, labels_folder=None):
     
     for fil in tqdm(filter(lambda x: x.endswith('.txt'), os.listdir(input_folder))):
 
-        iD, txt = fil[7:].split('.')[0], open(input_folder +fil, 'r', encoding='utf-8').read() 
+        iD, txt = fil[7:].split('.')[0], open(input_folder + '/' + fil, 'r', encoding='utf-8').read() 
         text.append((iD, txt))
 
     df_text = pd.DataFrame(text, columns=['id','text']).set_index('id')
@@ -39,33 +39,38 @@ def make_dataframe(input_folder, labels_folder=None):
 def main():
     
     
-    parser = argparse.ArgumentParser(description='Subtask-1')
-    parser.add_argument('train_folder',  type=str, nargs=1,
-                        help='Path to training articles')
-    parser.add_argument('dev_folder',  type=str, nargs=1,
-                    help='Path to dev articles')
-    parser.add_argument('train_labels',  type=str, nargs=1,
-                    help='Path to training labels')
-    parser.add_argument('-o', "--output",  type=str, nargs=1,
-                    help='Path to output predictions on dev (mandatory)')
+    # parser = argparse.ArgumentParser(description='Subtask-1')
+    # parser.add_argument('train_folder',  type=str, nargs=1,
+    #                     help='Path to training articles')
+    # parser.add_argument('dev_folder',  type=str, nargs=1,
+    #                 help='Path to dev articles')
+    # parser.add_argument('train_labels',  type=str, nargs=1,
+    #                 help='Path to training labels')
+    # parser.add_argument('-o', "--output",  type=str, nargs=1,
+    #                 help='Path to output predictions on dev (mandatory)')
     
-    args = parser.parse_args()
+    # args = parser.parse_args()
        
-    if not args.output:
-        print("argument -o is mandatory")
-        sys.exit(1)
+    # if not args.output:
+    #     print("argument -o is mandatory")
+    #     sys.exit(1)
     
 
     #if len(sys.argv) != 4:
     #    parser.print_help()
     #    return
     
-    print(args)
+    # print(args)
 
-    folder_train = args.train_folder[0]
-    folder_dev = args.dev_folder[0]
-    labels_train_fn = args.train_labels[0]
-    out_fn = args.output[0]
+    # folder_train = args.train_folder[0]
+    # folder_dev = args.dev_folder[0]
+    # labels_train_fn = args.train_labels[0]
+    # out_fn = args.output[0]
+
+    folder_train = "/Users/genglinliu/Documents/GitHub/SemEval/semeval2023/data_en_subtask1/train-articles-subtask-1"
+    folder_dev = "/Users/genglinliu/Documents/GitHub/SemEval/semeval2023/data_en_subtask1/dev-articles-subtask-1"
+    labels_train_fn = "/Users/genglinliu/Documents/GitHub/SemEval/semeval2023/data_en_subtask1/train-labels-subtask-1.txt"
+    out_fn = "/Users/genglinliu/Documents/GitHub/SemEval/semeval2023/data_en_subtask1/output.csv"
 
     #Read Data
     print('Loading training...')
